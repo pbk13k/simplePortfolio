@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+
+    <dimen name="sub_padding">16dp</dimen>
+    <dimen name="sub_titel_textsize">16sp</dimen>
+    <dimen name="sub_textsize">20sp</dimen>
+    <dimen name="sub_text_margin">8dp</dimen>
+
+</resources>

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="LoadingLayout">
-        <attr name="postion">
-            <enum name="top" value="0"/>
-            <enum name="bottom" value="1"/>
+    <declare-styleable name="RoundImageView">
+        <attr name="radius" format="float"/>
+        <attr name="postion" >
+            <flag name="topLeft" value="1"/>
+            <flag name="topRight" value="2"/>
+            <flag name="bottomRight" value="4"/>
+            <flag name="bottomLeft" value="8"/>
         </attr>
-        <attr name="loading_layout" format="reference|integer"/>
+
     </declare-styleable>
 </resources>
