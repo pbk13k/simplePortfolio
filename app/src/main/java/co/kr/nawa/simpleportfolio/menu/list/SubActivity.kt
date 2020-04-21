@@ -1,17 +1,20 @@
-package co.kr.nawa.simpleportfolio
+package co.kr.nawa.simpleportfolio.menu
 
 
+import android.os.Bundle
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AccelerateInterpolator
 import android.widget.LinearLayout
 
 import androidx.lifecycle.Observer
+import co.kr.nawa.simpleportfolio.R
 import co.kr.nawa.simpleportfolio.databinding.ActivitySubBinding
 import co.kr.nawa.simpleportfolio.item.Item
+import co.kr.nawa.simpleportfolio.util.`fun`.logD
 import co.kr.nawa.simpleportfolio.util.adapter.MyAdapter
 import co.kr.nawa.simpleportfolio.util.basic.ActivityBase
-import co.kr.nawa.simpleportfolio.viewModel.SubViewModel
+import co.kr.nawa.simpleportfolio.menu.viewModel.SubViewModel
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -24,7 +27,7 @@ import kotlinx.android.synthetic.main.sub_in_layout.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class SubActivity : ActivityBase<ActivitySubBinding,SubViewModel>() {
+class SubActivity : ActivityBase<ActivitySubBinding, SubViewModel>() {
 
     override val layoutResourceId: Int
         get() = R.layout.activity_sub
@@ -32,7 +35,7 @@ class SubActivity : ActivityBase<ActivitySubBinding,SubViewModel>() {
     lateinit var bottomSheetBehavior : BottomSheetBehavior<LinearLayout>
     lateinit var  adapter: MyAdapter
 
-    override fun loadView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
 
         // Set up shared element transition
         findViewById<View>(android.R.id.content).transitionName = "shared_element_end_root"
@@ -50,7 +53,7 @@ class SubActivity : ActivityBase<ActivitySubBinding,SubViewModel>() {
 //            pathMotion=MaterialArcMotion()
             duration = 300L
         }
-
+        super.onCreate(savedInstanceState)
     }
 
 
@@ -73,7 +76,11 @@ class SubActivity : ActivityBase<ActivitySubBinding,SubViewModel>() {
         bottomSheetBehavior=BottomSheetBehavior.from(bottom_layout as LinearLayout)
         val intent=intent
 
-        logD("size=${(intent.getSerializableExtra("items") as ArrayList<Item>).size}")
+        logD(
+            "size=${(intent.getSerializableExtra(
+                "items"
+            ) as ArrayList<Item>).size}"
+        )
 
         viewModel.items.postValue(intent.getSerializableExtra("items") as ArrayList<Item>)
 

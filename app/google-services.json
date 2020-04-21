@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "24828354373",
+    "firebase_url": "https://na-wa-simpleportfolio.firebaseio.com",
+    "project_id": "na-wa-simpleportfolio",
+    "storage_bucket": "na-wa-simpleportfolio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24828354373:android:d0925bf7624211eabc282c",
+        "android_client_info": {
+          "package_name": "co.kr.nawa.simpleportfolio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "24828354373-sni338lgoi3bcqg27r8i4l2buo6b4ebg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.kr.nawa.simpleportfolio",
+            "certificate_hash": "ed6b40d6fdbfb1e7cdade5f45e5c0b5a36ef6366"
+          }
+        },
+        {
+          "client_id": "24828354373-vocc4e9382rh90ug7tftf620d9tfvvfq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdoOhvtuuhKayoF6AcWe_aa9FIrES2LgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "24828354373-vocc4e9382rh90ug7tftf620d9tfvvfq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
