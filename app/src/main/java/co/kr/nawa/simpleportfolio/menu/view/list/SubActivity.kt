@@ -1,4 +1,4 @@
-package co.kr.nawa.simpleportfolio.menu
+package co.kr.nawa.simpleportfolio.menu.list
 
 
 import android.os.Bundle
@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import co.kr.nawa.simpleportfolio.R
 import co.kr.nawa.simpleportfolio.databinding.ActivitySubBinding
 import co.kr.nawa.simpleportfolio.item.Item
-import co.kr.nawa.simpleportfolio.util.`fun`.logD
+import co.kr.nawa.simpleportfolio.util.common.logD
 import co.kr.nawa.simpleportfolio.util.adapter.MyAdapter
 import co.kr.nawa.simpleportfolio.util.basic.ActivityBase
 import co.kr.nawa.simpleportfolio.menu.viewModel.SubViewModel

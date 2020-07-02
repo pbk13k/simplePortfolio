@@ -1,45 +1,40 @@
 package co.kr.nawa.simpleportfolio.viewHolder
 
-import android.R
+
 import android.view.View
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import co.kr.nawa.simpleportfolio.item.Item
+import co.kr.nawa.simpleportfolio.item.MenuItem
 import co.kr.nawa.simpleportfolio.util.adapter.RecyclerViewClickListener
 import co.kr.nawa.simpleportfolio.util.adapter.ViewHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.list_sub_item.view.*
+import kotlinx.android.synthetic.main.list_menu.view.*
 
 
-class SubitemVIewHolder(val view: View, var mListener: RecyclerViewClickListener?): ViewHolder(view),View.OnClickListener {
+class MenuVIewHolder(val view: View, var mListener: ((View,Int)->Unit)?): ViewHolder(view),View.OnClickListener {
+
+    val menu_text=view.menu_text
+    val menu_img=view.menu_img
 
     override fun onClick(v: View) {
         mListener?.let {
-            it.onClick(v,adapterPosition)
+            it(v,adapterPosition)
         }
     }
 
     override fun init(item: Any) {
-        val i=item as Item
+        val i=item as MenuItem
         val requestOptions = RequestOptions
             .skipMemoryCacheOf(false)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
         Glide.with(view.context)
-            .load(i.image_url)
+            .load(i.img)
             .apply(requestOptions)
             .override(100, 100)
-            .into(view.subimg)
-//        view.textView.text=i.name
+            .into(menu_img)
+        menu_text.text=i.text
 
-        val interpolator= AccelerateInterpolator()
-//        view.animate()
-//            .scaleX(1f).scaleY(1f).alpha(1f).translationY(-30f )
-//            .setDuration(3000).setInterpolator(interpolator).withEndAction {
-//                view.animate().translationY(0f).setDuration(300).setInterpolator(interpolator).start()
-//            }.start()
+
         view.setOnClickListener(this)
 //        val drawable : GradientDrawable =view.context.getDrawable(R.drawable.imageclip) as (GradientDrawable)
 //
@@ -47,9 +42,6 @@ class SubitemVIewHolder(val view: View, var mListener: RecyclerViewClickListener
 //        view.imageView.background=drawable
 //        view.imageView.clipToOutline=true
     }
-
-
-
 
 
 }

@@ -1,10 +1,11 @@
-package co.kr.nawa.simpleportfolio.menu
+package co.kr.nawa.simpleportfolio.menu.list
 
 
 import android.app.ActivityOptions
 import android.content.Intent
 import android.graphics.Point
 import android.os.Build
+import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -12,7 +13,7 @@ import androidx.lifecycle.Observer
 import co.kr.nawa.simpleportfolio.R
 
 import co.kr.nawa.simpleportfolio.databinding.ActivityListBinding
-import co.kr.nawa.simpleportfolio.util.`fun`.logD
+import co.kr.nawa.simpleportfolio.util.common.logD
 import co.kr.nawa.simpleportfolio.menu.viewModel.ListViewModel
 import co.kr.nawa.simpleportfolio.util.adapter.MyAdapter
 import co.kr.nawa.simpleportfolio.util.basic.ActivityBase
@@ -37,6 +38,22 @@ class ActivityList : ActivityBase<ActivityListBinding,ListViewModel>() {
     private var menu1percent=0f
     private var addLength=0
     private var menuLayoutPadding=0
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        // Enable Activity Transitions. Optionally enable Activity transitions in your
+        // theme with <item name=”android:windowActivityTransitions”>true</item>.
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
+
+        // Attach a callback used to capture the shared elements from this Activity to be used
+        // by the container transform transition
+        setExitSharedElementCallback(MaterialContainerTransformSharedElementCallback())
+
+        // Keep system bars (status bar, navigation bar) persistent throughout the transition.
+        window.sharedElementsUseOverlay = false
+        super.onCreate(savedInstanceState)
+    }
+
 
     override fun init() {
 
@@ -178,16 +195,5 @@ class ActivityList : ActivityBase<ActivityListBinding,ListViewModel>() {
 
     }
 
-    override fun loadView() {
-        // Enable Activity Transitions. Optionally enable Activity transitions in your
-        // theme with <item name=”android:windowActivityTransitions”>true</item>.
-        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
 
-        // Attach a callback used to capture the shared elements from this Activity to be used
-        // by the container transform transition
-        setExitSharedElementCallback(MaterialContainerTransformSharedElementCallback())
-
-        // Keep system bars (status bar, navigation bar) persistent throughout the transition.
-        window.sharedElementsUseOverlay = false
-    }
 }
