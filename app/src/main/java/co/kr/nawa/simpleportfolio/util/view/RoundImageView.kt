@@ -6,7 +6,7 @@ import android.graphics.Path
 import android.graphics.RectF
 import android.util.AttributeSet
 import co.kr.nawa.simpleportfolio.R
-import co.kr.nawa.simpleportfolio.logD
+import co.kr.nawa.simpleportfolio.util.common.logD
 
 
 class RoundImageView(context: Context, attrs: AttributeSet) : androidx.appcompat.widget.AppCompatImageView(context,attrs) {
@@ -48,8 +48,9 @@ class RoundImageView(context: Context, attrs: AttributeSet) : androidx.appcompat
         val clipPath = Path()
         val rect = RectF(0F, 0F, this.width.toFloat(), this.height.toFloat())
         var ra:FloatArray
+        logD("radius=${radius}")
         if (postion==0 ) {
-
+            logD("radius=${radius}")
             ra=floatArrayOf(radius, radius, radius, radius, radius, radius, radius, radius)
         }else{
             ra=FloatArray(8) {0f}

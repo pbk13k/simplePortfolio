@@ -1,6 +1,5 @@
-package co.kr.nawa.simpleportfolio.menu
+package co.kr.nawa.simpleportfolio.menu.view
 
-import android.os.Bundle
 import androidx.lifecycle.Observer
 import co.kr.nawa.simpleportfolio.R
 import co.kr.nawa.simpleportfolio.databinding.ActivityMapBinding
@@ -8,9 +7,7 @@ import co.kr.nawa.simpleportfolio.menu.viewModel.MapViewModel
 import co.kr.nawa.simpleportfolio.util.basic.ActivityBase
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

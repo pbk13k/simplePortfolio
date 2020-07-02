@@ -12,4 +12,9 @@
     <dimen name="sub_textsize">20sp</dimen>
     <dimen name="sub_text_margin">8dp</dimen>
 
+
+
+    <dimen name="btn_top_bottom">16dp</dimen>
+    <dimen name="btn_left_right">40dp</dimen>
+
 </resources>

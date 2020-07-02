@@ -2,9 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".menu.LoginActivity">
+    tools:context=".menu.view.LoginActivity">
 
     <data>
         <variable
@@ -12,11 +10,16 @@
             type="co.kr.nawa.simpleportfolio.menu.viewModel.LoginViewModel" />
     </data>
 
-    <LinearLayout
+    <FrameLayout
+
+        android:background="@drawable/bg_an_start"
+        android:id="@+id/bg_layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </LinearLayout>
+
+
+    </FrameLayout>
 
 </layout>

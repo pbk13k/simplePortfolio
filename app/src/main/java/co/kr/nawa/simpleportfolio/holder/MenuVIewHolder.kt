@@ -1,9 +1,8 @@
-package co.kr.nawa.simpleportfolio.viewHolder
+package co.kr.nawa.simpleportfolio.holder
 
 
 import android.view.View
 import co.kr.nawa.simpleportfolio.item.MenuItem
-import co.kr.nawa.simpleportfolio.util.adapter.RecyclerViewClickListener
 import co.kr.nawa.simpleportfolio.util.adapter.ViewHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white"
+    android:id="@+id/list_item"
+    android:padding="16dp">
+
+
+    <co.kr.nawa.simpleportfolio.util.view.RoundImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:radius="30"
+        app:postion="topRight|topLeft"
+         />
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="TextView" />
+
+    <View
+        android:background="@drawable/shadow"
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+         />
+</LinearLayout>

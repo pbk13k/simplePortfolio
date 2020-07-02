@@ -2,38 +2,86 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/login_bg1"
-    android:background="@drawable/bg_login"
+    android:background="@color/white"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-    <LinearLayout
-        android:id="@+id/text_layout"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="30dp"
+    <ImageView
+        android:id="@+id/back_btn3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/ic_back" />
+
+
+
+    <LinearLayout
+        android:layout_margin="32dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme1"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/hello"
-            android:textSize="60sp"
-            android:includeFontPadding="false"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/id_text"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Hello" />
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/main"
+            app:boxStrokeWidth="2dp"
+            app:boxCollapsedPaddingTop="15dp"
+            app:boxCornerRadiusTopEnd="30dp"
+            app:boxCornerRadiusTopStart="30dp"
+            app:boxCornerRadiusBottomEnd="30dp"
+            app:boxCornerRadiusBottomStart="30dp"
+            android:hint="ID"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingTop="13dp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:textSize="24sp"
-            android:id="@+id/text"
-            android:includeFontPadding="false"
-            android:lineSpacingExtra="0dp"
-            android:layout_width="wrap_content"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pw_text"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Simple Login" />
+            app:counterEnabled="true"
+            app:counterMaxLength="12"
+            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/main"
+            app:boxStrokeWidth="2dp"
+            app:boxCornerRadiusTopEnd="30dp"
+            app:boxCornerRadiusTopStart="30dp"
+            app:boxCornerRadiusBottomEnd="30dp"
+            app:boxCornerRadiusBottomStart="30dp"
+            android:hint="PassWord"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:singleLine="true"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:paddingTop="13dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
     </LinearLayout>
+
 
     <LinearLayout
 
@@ -46,24 +94,10 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/sign_in"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/main_r_32"
-            android:gravity="center"
-            android:paddingTop="@dimen/btn_top_bottom"
-            android:paddingBottom="@dimen/btn_top_bottom"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="Sign in"
-            android:textColor="@color/white" />
-
-        <TextView
             android:translationY="-10dp"
             android:background="@drawable/main_r_line_32"
             android:textColor="@color/main"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             android:gravity="center"
             android:paddingTop="@dimen/btn_top_bottom"
             android:paddingBottom="@dimen/btn_top_bottom"

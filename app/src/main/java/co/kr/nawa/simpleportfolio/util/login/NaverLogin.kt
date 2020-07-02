@@ -3,28 +3,18 @@ package co.kr.nawa.simpleportfolio.util.login
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
-import android.os.AsyncTask
-import android.os.Bundle
-import android.os.Message
-import android.widget.Toast
-import androidx.lifecycle.Transformations.switchMap
 import co.kr.nawa.simpleportfolio.R
 import co.kr.nawa.simpleportfolio.item.SnsItem
-import co.kr.nawa.simpleportfolio.util.`fun`.logD
-import com.google.gson.Gson
-import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.OAuthLoginHandler
 import io.reactivex.Observable
-import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 
-class Naver_Login(private val act: Activity, private val callback: (SnsItem) -> Unit) {
+class NaverLogin(private val act: Activity, private val callback: (SnsItem) -> Unit) {
 
-    private val TAG = "Naver_Login"
 
     private val mOAuthLoginInstance: OAuthLogin
     private var mOAuthLoginHandler: OAuthLoginHandler? = null
@@ -75,7 +65,7 @@ class Naver_Login(private val act: Activity, private val callback: (SnsItem) -> 
                     }
                         .map{
                             var email=JsonParser().parse(it).asJsonObject.get("response").asJsonObject.get("email").asString
-                            return@map SnsItem(email,SnsItem.Type.NAVER)
+                            return@map SnsItem(email,SnsItem.Type.NAVER,true)
                         }
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -90,40 +80,12 @@ class Naver_Login(private val act: Activity, private val callback: (SnsItem) -> 
 
                     val errorCode = mOAuthLoginInstance.getLastErrorCode(context).code
                     val errorDesc = mOAuthLoginInstance.getLastErrorDesc(context)
-                    Toast.makeText(context, "로그인이 취소/실패 하였습니다.!", Toast.LENGTH_SHORT).show()
+                    callback(SnsItem("",SnsItem.Type.NAVER))
+//                    Toast.makeText(context, "로그인이 취소/실패 하였습니다.!", Toast.LENGTH_SHORT).show()
                     //                    Toast.makeText(context, "errorCode:" + errorCode + ", errorDesc:" + errorDesc, Toast.LENGTH_SHORT).show();
                     //                    Log.e("error","errorCode : " + errorCode + ", errorDesc : " + errorDesc);
                 }
             }
-        }
-
-    }
-
-
-    private inner class RequestApiTask : AsyncTask<Void, Void, Void>() {
-
-        override fun onPreExecute() {}
-
-        override fun doInBackground(vararg params: Void): Void? {
-
-            //            String url = "https://openapi.naver.com/v1/nid/getUserProfile.xml"; xml
-            val url = "https://openapi.naver.com/v1/nid/me"
-            val at = mOAuthLoginInstance.getAccessToken(context)
-            val user_json = mOAuthLoginInstance.requestApi(context, at, url)
-
-            val msg = Message.obtain()
-            msg.obj = user_json
-            val data = Bundle()
-            data.putString("url", "naver_login")
-            msg.what = 1
-            msg.data = data
-
-            var email=JsonParser().parse(user_json).asJsonObject.get("response").asJsonObject.get("email").asString
-//            callback(SnsItem(email,"naver"))
-
-//            handler.sendMessage(msg)
-
-            return null
         }
 
     }

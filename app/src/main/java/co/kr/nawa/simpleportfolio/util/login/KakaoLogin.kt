@@ -3,38 +3,36 @@ package co.kr.nawa.simpleportfolio.util.login
 
 import android.app.Activity
 import android.content.Context
-import android.os.Bundle
-import android.os.Handler
-import android.os.Message
-import android.util.Log
 import androidx.fragment.app.Fragment
+import co.kr.nawa.simpleportfolio.item.SnsItem
+import co.kr.nawa.simpleportfolio.util.common.logD
 import com.kakao.auth.*
 import com.kakao.network.ErrorResult
 import com.kakao.usermgmt.UserManagement
-import com.kakao.usermgmt.callback.MeResponseCallback
-import com.kakao.usermgmt.response.model.UserProfile
+import com.kakao.usermgmt.callback.MeV2ResponseCallback
+import com.kakao.usermgmt.response.MeV2Response
 import com.kakao.util.exception.KakaoException
 
 
-class Kakao_Login(act: Activity,  handler: Handler){
+class KakaoLogin(private val act: Activity, private val callback: (SnsItem) -> Unit){
+
     private val context: Context
-    private val TAG = "Kakao_Login"
-    val handler:Handler
-    var act:Activity ?=null
     var fragment: Fragment?=null
+//    private val KAKAO_APP_KEY="37cc3c75ae9304b80ee6bd814b282d04"
+//    private val disposables: CompositeDisposable = CompositeDisposable()
+
+    constructor(act: Activity,fragment: Fragment,callback: (SnsItem) -> Unit):this(act,callback){
+        this.fragment=fragment
+    }
 
     init {
-        this.act=act
         context = act.applicationContext
-        this.handler=handler
         init()
     }
 
 
 
-    constructor(act: Activity,fragment: Fragment, handler: Handler):this(act,handler){
-        this.fragment=fragment
-    }
+
 
     fun init(){
         if (KakaoSDK.getAdapter() == null) {
@@ -73,7 +71,7 @@ class Kakao_Login(act: Activity,  handler: Handler){
         Session.getCurrentSession().addCallback(object : ISessionCallback {
             override fun onSessionOpened() {
                 //Log.i("onSessionOpened","onSessionOpened");
-                KakaorequestMe()
+                kakaoRequestMe()
             }
 
             override fun onSessionOpenFailed(exception: KakaoException) {
@@ -81,13 +79,41 @@ class Kakao_Login(act: Activity,  handler: Handler){
 
             }
         })
+
     }
 
 
     fun login() {
 
-        if (Session.getCurrentSession().checkAndImplicitOpen()) {
+//        AuthCodeClient.rx.authorize(context)
+//            .observeOn(Schedulers.io())
+//            .flatMap { authCode ->
+//                logD("authCode=${authCode}")
+//                AuthApiClient.rx.issueAccessToken(authCode)
+//
+//            }
+//            .subscribe({
+//
+//            }) { error ->
+//
+//            }.addTo(disposables)
 
+
+//        AuthCodeClient.rx.authorizeWithTalk(act.applicationContext, 1002 /* random request code for startActivity */)
+//            .observeOn(Schedulers.io())
+//            .flatMap { authCode -> AuthApiClient.rx.issueAccessToken(authCode) }
+//            .subscribe({
+//                logD("login")
+//                logD(it.accessToken)
+//            }) { error ->
+//                logE("error111=${error.message}")
+//            }.addTo(disposables)
+
+
+
+        if (Session.getCurrentSession().checkAndImplicitOpen()) {
+            logD("login_Session")
+            return
         }
 
         if (fragment!=null){
@@ -114,52 +140,37 @@ class Kakao_Login(act: Activity,  handler: Handler){
         })
     }
 
-    protected fun KakaorequestMe() {
+    protected fun kakaoRequestMe() {
 
-        UserManagement.getInstance().requestMe(object : MeResponseCallback() {
-            override fun onFailure(errorResult: ErrorResult?) {
-                //                String message = "failed to get user info. msg=" + errorResult;
-                //                Logger.d(message);
-                val msg = Message.obtain()
-                val request = "취소되었습니다."
-                msg.obj = request
-                val data = Bundle()
-                msg.what = 0
-                msg.data = data
-                handler.sendMessage(msg)
-                //redirectLoginActivity();
-            }
+        UserManagement.getInstance().me(object : MeV2ResponseCallback(){
+            override fun onSuccess(result: MeV2Response) {
 
-            override fun onSessionClosed(errorResult: ErrorResult) {
-                //redirectLoginActivity();
-            }
-
-            override fun onSuccess(userProfile: UserProfile) {
-                val msg = Message.obtain()
-
-                msg.obj = userProfile.email
-                userProfile.id
-                //                Log.d("id"," "+userProfile.getId());
-                //                Log.d("nick"," "+userProfile.getNickname());
-                //                Log.d("img"," "+userProfile.getProfileImagePath());
-                var img_url = ""
-                if (userProfile.profileImagePath != "null" || userProfile.profileImagePath != null) {
-                    img_url = userProfile.profileImagePath
+                val profile=result.properties
+                val keys=profile.keys
+                logD("key.size=${keys.size}")
+                for (key in keys){
+                    logD("key=${key} value=${profile[key]}")
                 }
-                val data = Bundle()
-                data.putString("url", "kakao_login")
-                data.putString("nickname", userProfile.nickname)
-                data.putString("profile_image", img_url)
-                msg.what = 1
-                msg.data = data
-                handler.sendMessage(msg)
+                logD("email=${result.kakaoAccount.email}")
+
+                callback(SnsItem(result.kakaoAccount.email,SnsItem.Type.KAKAO,true))
+            }
+
+            override fun onSessionClosed(errorResult: ErrorResult?) {
 
             }
 
-            override fun onNotSignedUp() {
-                Log.d(TAG, "onNotSignedUp")
-                //showSignup();
+            override fun onFailure(errorResult: ErrorResult) {
+
+                callback(SnsItem(errorResult.errorMessage,SnsItem.Type.KAKAO,false))
             }
+
         })
+
+
+
     }
+
+
+
 }

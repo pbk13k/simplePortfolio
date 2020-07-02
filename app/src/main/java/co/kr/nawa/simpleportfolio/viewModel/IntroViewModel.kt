@@ -1,4 +1,6 @@
 package co.kr.nawa.simpleportfolio.viewModel
 
-class IntroViewModel {
+import co.kr.nawa.simpleportfolio.util.basic.ViewModelBasic
+
+class IntroViewModel:ViewModelBasic() {
 }

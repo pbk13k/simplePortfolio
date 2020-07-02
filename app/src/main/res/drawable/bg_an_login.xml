@@ -2,11 +2,7 @@
 <animation-list  xmlns:android="http://schemas.android.com/apk/res/android"
     android:oneshot="true">
     <!-- The drawables used here can be solid colors, gradients, shapes, images, etc. -->
-    <item android:duration="0">
-        <shape>
-            <solid android:color="@color/white"/>
-        </shape>
-    </item>
+
 
     <item android:duration="0">
         <shape>
@@ -19,5 +15,19 @@
                 />
         </shape>
     </item>
+
+
+    <item android:duration="0">
+        <shape>
+            <gradient
+                android:startColor="@color/white"
+                android:centerX="0.4"
+                android:centerColor="@color/main"
+                android:endColor="@color/main"
+                android:angle="270"
+                />
+        </shape>
+    </item>
+
 
 </animation-list>

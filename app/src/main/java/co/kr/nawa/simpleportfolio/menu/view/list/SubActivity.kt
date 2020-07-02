@@ -1,4 +1,4 @@
-package co.kr.nawa.simpleportfolio.menu.list
+package co.kr.nawa.simpleportfolio.menu.view.list
 
 
 import android.os.Bundle

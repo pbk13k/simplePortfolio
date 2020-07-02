@@ -2,16 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".SubActivity" >
-    
-    
+     >
     <data>
         <variable
             name="viewModel"
-            type="co.kr.nawa.simpleportfolio.viewModel.SubViewModel" />
+            type="co.kr.nawa.simpleportfolio.menu.viewModel.SubViewModel" />
     </data>
 
     <LinearLayout
+        tools:context=".menu.view.list.SubActivity"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -249,14 +248,16 @@
                 android:background="@color/main"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_heart" />
+                app:srcCompat="@drawable/ic_heart"
+                 />
 
             <ImageView
                 android:padding="16dp"
                 android:background="@drawable/bg_w_r_r"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_event" />
+                app:srcCompat="@drawable/ic_event"
+                />
         </LinearLayout>
 
     </LinearLayout>

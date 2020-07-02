@@ -8,16 +8,16 @@ import android.view.animation.AnimationUtils
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import co.kr.nawa.simpleportfolio.R
-import co.kr.nawa.simpleportfolio.logD
-import co.kr.nawa.simpleportfolio.viewHolder.ItemVIewHolder
-import co.kr.nawa.simpleportfolio.viewHolder.SubitemVIewHolder
-import kotlinx.android.synthetic.main.list_item.view.*
+import co.kr.nawa.simpleportfolio.util.common.logD
+import co.kr.nawa.simpleportfolio.holder.ItemVIewHolder
+import co.kr.nawa.simpleportfolio.holder.MenuVIewHolder
+import co.kr.nawa.simpleportfolio.holder.SubitemVIewHolder
 
 
 class MyAdapter(var layout: Int, items: ArrayList<out Any>) : RecyclerView.Adapter<ViewHolder>() {
 
     private var items: ArrayList<out Any>
-    private var onClickListener: RecyclerViewClickListener? = null
+    var onClickListener: ((View, Int) -> Unit)? = null
 
 
     init {
@@ -27,18 +27,11 @@ class MyAdapter(var layout: Int, items: ArrayList<out Any>) : RecyclerView.Adapt
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(layout, parent, false)
-        val viewHolder:ViewHolder=
-        if (layout== R.layout.list_item) {
-            ItemVIewHolder(view, onClickListener)
-        }else if (layout== R.layout.list_sub_item) {
-            SubitemVIewHolder(view, onClickListener)
-        }else{
-            ItemVIewHolder(view, onClickListener)
-        }
 
         return when(layout){
             R.layout.list_item->  ItemVIewHolder(view, onClickListener)
             R.layout.list_sub_item->  SubitemVIewHolder(view, onClickListener)
+            R.layout.list_menu->  MenuVIewHolder(view, onClickListener)
             else -> ItemVIewHolder(view, onClickListener)
         }
     }
@@ -79,10 +72,10 @@ class MyAdapter(var layout: Int, items: ArrayList<out Any>) : RecyclerView.Adapt
 
 
 
-    fun setOnClickListener (onClickListener: RecyclerViewClickListener){
-        this.onClickListener = onClickListener
-        notifyDataSetChanged()
-    }
+//    fun setOnClickListener (onClickListener: (view:View, position:Int) -> Unit){
+//        this.onClickListener = onClickListener
+//        notifyDataSetChanged()
+//    }
 
     fun setItems(items: ArrayList<out Any>) {
         this.items = items

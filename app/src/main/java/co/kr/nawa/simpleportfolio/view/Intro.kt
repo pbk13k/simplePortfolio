@@ -1,16 +1,9 @@
-package co.kr.nawa.simpleportfolio
+package co.kr.nawa.simpleportfolio.view
 
-import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import co.kr.nawa.simpleportfolio.R
 import co.kr.nawa.simpleportfolio.databinding.ActivityIntroBinding
 import co.kr.nawa.simpleportfolio.util.basic.ActivityBase
 import co.kr.nawa.simpleportfolio.viewModel.IntroViewModel
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class Intro : ActivityBase<ActivityIntroBinding,IntroViewModel>() {

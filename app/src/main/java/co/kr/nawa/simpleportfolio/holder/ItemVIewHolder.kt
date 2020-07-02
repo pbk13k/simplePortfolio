@@ -1,4 +1,4 @@
-package co.kr.nawa.simpleportfolio.viewHolder
+package co.kr.nawa.simpleportfolio.holder
 
 import android.view.View
 import co.kr.nawa.simpleportfolio.item.Item

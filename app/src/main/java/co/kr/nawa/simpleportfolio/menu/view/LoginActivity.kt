@@ -1,4 +1,4 @@
-package co.kr.nawa.simpleportfolio.menu
+package co.kr.nawa.simpleportfolio.menu.view
 
 import android.animation.LayoutTransition
 import android.app.Activity
