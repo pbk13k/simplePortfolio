@@ -1,11 +1,14 @@
 package co.kr.nawa.simpleportfolio.util.async
 
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import co.kr.nawa.simpleportfolio.item.ResponseItem
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken
 import io.reactivex.Single
 import co.kr.nawa.simpleportfolio.util.common.logD
+import retrofit2.HttpException
+import retrofit2.Response
 
 class Repository(val retrofit: RestHelper) {
 
@@ -13,6 +16,43 @@ class Repository(val retrofit: RestHelper) {
 
     init {
         api=retrofit.getRetrofit().create(Api_Data::class.java)
+    }
+
+    fun getTojsonOne(url:String,hashMap: HashMap<String,String>,key:String): Single<String> {
+        val apilist  =api.getTOJosn(url,hashMap).map { res:JsonElement ->
+
+//            var body=res.toString()
+
+//            var typeToken=TypeToken.getParameterized(ArrayList::class.java, classOfT).type
+
+//            var any:ArrayList<T> = Gson().fromJson(body,typeToken)
+
+            return@map res.asJsonObject.get(key).asString
+        }
+        return apilist
+    }
+
+
+    fun <T>postToJsonObj(
+        url:String,
+        headers: MutableMap<String, Any>,
+        hashMap: MutableMap<String,Any>,
+        classOfT:Class<T>, key:String): Single<ResponseItem<T>> {
+
+        return api.postToJson(url,headers,hashMap).map { res : Response<JsonElement> ->  T
+            if (res.isSuccessful){
+
+                if (res.body()!=null){
+                    var body=res.body()!!.asJsonObject.get(key).asJsonObject.toString()
+//                    return@map Gson().fromJson(body,classOfT)
+                    return@map  ResponseItem(res.code(),Gson().fromJson(body,classOfT))
+                }else{
+                    throw HttpException(res)
+                }
+            }else{
+                throw HttpException(res)
+            }
+        }
     }
 
     fun <T>  getTojson(url:String,hashMap: HashMap<String,String>,classOfT:Class<T>): Single<ArrayList<T>> {

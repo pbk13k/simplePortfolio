@@ -16,7 +16,7 @@ class MainViewModel : ViewModelBasic(){
     init {
         val temitems=ArrayList<MenuItem>()
         temitems.add(MenuItem(R.drawable.ic_style,"Animation_List",ActivityList::class.java))
-        temitems.add(MenuItem(R.drawable.ic_login,"Login", LoginActivity::class.java))
+        temitems.add(MenuItem(R.drawable.ic_login,"SNS_Login\nScene_Animation", LoginActivity::class.java))
         //temitems.add(MenuItem(R.drawable.ic_map,"Map", MapActivity::class.java))
         items.postValue(temitems)
     }

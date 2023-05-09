@@ -9,6 +9,5 @@
             <flag name="bottomRight" value="4"/>
             <flag name="bottomLeft" value="8"/>
         </attr>
-
     </declare-styleable>
 </resources>

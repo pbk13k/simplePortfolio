@@ -14,7 +14,7 @@ import co.kr.nawa.simpleportfolio.holder.MenuVIewHolder
 import co.kr.nawa.simpleportfolio.holder.SubitemVIewHolder
 
 
-class MyAdapter(var layout: Int, items: ArrayList<out Any>) : RecyclerView.Adapter<ViewHolder>() {
+abstract class MyAdapter( items: ArrayList<out Any>) : RecyclerView.Adapter<ViewHolder>() {
 
     private var items: ArrayList<out Any>
     var onClickListener: ((View, Int) -> Unit)? = null
@@ -24,16 +24,20 @@ class MyAdapter(var layout: Int, items: ArrayList<out Any>) : RecyclerView.Adapt
         this.items=items
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(layout, parent, false)
 
-        return when(layout){
-            R.layout.list_item->  ItemVIewHolder(view, onClickListener)
-            R.layout.list_sub_item->  SubitemVIewHolder(view, onClickListener)
-            R.layout.list_menu->  MenuVIewHolder(view, onClickListener)
-            else -> ItemVIewHolder(view, onClickListener)
-        }
+    abstract fun getViewHolder(view: LayoutInflater, parent: ViewGroup):ViewHolder
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+//        val inflater = LayoutInflater.from(parent.context)
+//        val view = inflater.inflate(layout, parent, false)
+//
+//        return when(layout){
+//            R.layout.list_item->  ItemVIewHolder(view, onClickListener)
+//            R.layout.list_sub_item->  SubitemVIewHolder(view, onClickListener)
+//            R.layout.list_menu->  MenuVIewHolder(view, onClickListener)
+//            else -> ItemVIewHolder(view, onClickListener)
+//        }
+        return getViewHolder(LayoutInflater.from(parent.context), parent)
     }
 
     override fun getItemCount(): Int {
@@ -71,11 +75,6 @@ class MyAdapter(var layout: Int, items: ArrayList<out Any>) : RecyclerView.Adapt
     }
 
 
-
-//    fun setOnClickListener (onClickListener: (view:View, position:Int) -> Unit){
-//        this.onClickListener = onClickListener
-//        notifyDataSetChanged()
-//    }
 
     fun setItems(items: ArrayList<out Any>) {
         this.items = items

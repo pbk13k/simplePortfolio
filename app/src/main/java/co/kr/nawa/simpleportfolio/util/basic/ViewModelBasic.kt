@@ -7,7 +7,7 @@ import io.reactivex.disposables.Disposable
 //rxjava2용 뷰모델
 open class ViewModelBasic :ViewModel() {
 
-    private val compositeDisposable = CompositeDisposable()
+    protected val compositeDisposable = CompositeDisposable()
 
     //구독 등록
     fun addDisposable(disposable: Disposable) {
@@ -17,7 +17,7 @@ open class ViewModelBasic :ViewModel() {
 
     //구독취소 subscribe 취소시킴 (메모리 관리)
     override fun onCleared() {
-        compositeDisposable.clear()
+        compositeDisposable.dispose()
         super.onCleared()
     }
 

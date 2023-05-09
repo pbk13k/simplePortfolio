@@ -10,13 +10,24 @@
     android:padding="16dp">
 
 
-    <co.kr.nawa.simpleportfolio.util.view.RoundImageView
-        android:id="@+id/imageView"
+<!--    <co.kr.nawa.simpleportfolio.util.view.RoundImageView-->
+<!--        -->
+<!--        android:layout_width="150dp"-->
+<!--        android:layout_height="150dp"-->
+<!--        app:radius="30"-->
+<!--        app:postion="topRight|topLeft"-->
+<!--         />-->
+    <androidx.cardview.widget.CardView
         android:layout_width="150dp"
         android:layout_height="150dp"
-        app:radius="30"
-        app:postion="topRight|topLeft"
-         />
+        app:cardCornerRadius="30dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
+    </androidx.cardview.widget.CardView>
+
 
     <TextView
         android:gravity="center"

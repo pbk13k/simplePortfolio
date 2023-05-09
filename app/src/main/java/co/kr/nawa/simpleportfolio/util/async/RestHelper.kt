@@ -23,7 +23,7 @@ class RestHelper(var type: Type) {
 
     enum class Type constructor(val value: String) {
         MAIN("https://api.punkapi.com/v2/"),
-        SUB("http://nawa.dothome.co.kr/api/")
+        SUB("http://nawa.dothome.co.kr/api/testgps/")
     }
 
 //    private var API_BASE_URL = "https://6uqljnm1pb.execute-api.ap-northeast-2.amazonaws.com/prod/"

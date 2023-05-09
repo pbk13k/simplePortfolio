@@ -24,7 +24,7 @@ fun move(view: View,time:Long){
         duration=time
         interpolator = interpolatorV
         withEndAction {
-            logD("aaaaaaa")
+
             view.animate().translationY(0f).setInterpolator(interpolatorV).setDuration(100).start()
         }
     }

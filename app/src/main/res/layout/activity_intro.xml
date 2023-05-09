@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     tools:context=".view.Intro">
 
     <data>
@@ -11,61 +12,47 @@
     </data>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:background="@drawable/intro_bg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
-                android:lineSpacingMultiplier="0.65"
-                android:textColor="#2B2D2C"
-                android:layout_marginStart="30dp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textSize="80sp"
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/intro_text" />
+                android:text="Simple"
+                android:textSize="50sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:lineSpacingMultiplier="0.65"
-                android:textColor="#2B2D2C"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="120dp"
-                android:textStyle="bold"
-                android:textSize="60sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SIMPLE" />
-
+                android:layout_marginLeft="30dp"
+                android:text="Portfolio"
+                android:textSize="20sp" />
         </LinearLayout>
-
-
-
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
-                android:textColor="#2B2D2C"
-                android:textStyle="bold"
-                android:textSize="20sp"
+                android:id="@+id/version"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SIMPLE" />
+                android:layout_marginBottom="8dp"
+                android:padding="8dp" />
         </LinearLayout>
-
-
     </LinearLayout>
 
 

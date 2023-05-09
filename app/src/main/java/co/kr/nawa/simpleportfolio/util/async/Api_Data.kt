@@ -2,6 +2,7 @@ package co.kr.nawa.simpleportfolio.util.async
 
 import com.google.gson.JsonElement
 import io.reactivex.Single
+import retrofit2.Response
 
 import retrofit2.http.*
 import java.util.*
@@ -48,4 +49,12 @@ interface Api_Data {
         @Body body: HashMap<String,String>
     ): Single<JsonElement>
 
+
+    @Headers("Content-Type: application/json")
+    @POST
+    fun postToJson(
+        @Url url: String,
+        @HeaderMap headers: MutableMap<String,Any>,
+        @Body body: MutableMap<String,Any>
+    ): Single<Response<JsonElement>>
 }

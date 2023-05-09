@@ -211,17 +211,120 @@
                             android:layout_height="wrap_content"
                             android:text="TextView" />
                     </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+                android:id="@+id/bottom_layout"
+                app:behavior_peekHeight="66dp"
+                app:behavior_hideable="false"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <FrameLayout
+                    android:background="@drawable/bg_black_tl_tr_r"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="66dp">
+
+                    <TextView
+                        android:textSize="20dp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="List" />
+
+                    <ImageView
+                        android:id="@+id/back_btn2"
+                        android:layout_gravity="right"
+                        android:padding="8dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        app:srcCompat="@drawable/ic_next" />
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:background="@color/black"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <LinearLayout
+                        android:background="@drawable/bg_w_r_16"
+                        android:layout_margin="26dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="150dp"
+                            android:layout_height="200dp"
+                            app:cardCornerRadius="30dp">
+
+                            <ImageView
+                                android:id="@+id/bg_img2"
+                                android:layout_width="150dp"
+                                android:layout_height="200dp"
+                                app:srcCompat="@drawable/ic_launcher_background" />
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+                            android:layout_margin="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:singleLine="true"
+                                android:id="@+id/name2"
+                                android:textSize="24sp"
+                                android:textStyle="bold"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="TextView" />
+
+                            <TextView
+                                android:layout_marginTop="8dp"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:id="@+id/tagline2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="TextView" />
+
+                            <TextView
+                                android:layout_marginTop="16dp"
+                                android:id="@+id/description2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="TextView" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:orientation="vertical"
+                        tools:listitem="@layout/list_sub_item"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
 
                 </LinearLayout>
 
-
-
-
             </LinearLayout>
-
-
-            <include layout="@layout/sub_in_layout" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <LinearLayout

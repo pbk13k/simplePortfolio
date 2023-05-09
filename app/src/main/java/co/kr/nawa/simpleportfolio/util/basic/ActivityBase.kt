@@ -13,7 +13,7 @@ abstract class ActivityBase<T : ViewDataBinding,VM: ViewModel>: AppCompatActivit
 
 
     abstract val layoutResourceId: Int
-    lateinit var viewDataBinding: T
+    lateinit var binding: T
     abstract val viewModel : VM
 
     protected abstract fun init()
@@ -25,18 +25,18 @@ abstract class ActivityBase<T : ViewDataBinding,VM: ViewModel>: AppCompatActivit
 
 
         super.onCreate(savedInstanceState)
-        viewDataBinding = DataBindingUtil.setContentView(this, layoutResourceId)
-        viewDataBinding.setVariable(BR.viewModel,viewModel)
-        viewDataBinding.lifecycleOwner=this
+        binding = DataBindingUtil.setContentView(this, layoutResourceId)
+        binding.setVariable(BR.viewModel,viewModel)
+        binding.lifecycleOwner=this
 
-        init_default()
+        initDefault()
 
         init()
         init_Listener()
         init_dataBinding()
     }
 
-    fun init_default(){
+    private fun initDefault(){
 
     }
 

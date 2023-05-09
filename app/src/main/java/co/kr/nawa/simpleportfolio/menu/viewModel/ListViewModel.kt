@@ -16,8 +16,8 @@ class ListViewModel(private val repository: Repository) : ViewModelBasic() {
 
     fun itemsGet(page:Int){
         var data=HashMap<String,String>()
-        data.put("page",page.toString())
-        data.put("per_page","30")
+        data["page"] = page.toString()
+        data["per_page"] = "30"
         addDisposable(
             repository.getTojson("beers",data, Item::class.java)
                 .subscribeOn(Schedulers.io())

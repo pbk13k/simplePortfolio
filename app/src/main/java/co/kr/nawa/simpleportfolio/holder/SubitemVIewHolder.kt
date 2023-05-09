@@ -2,18 +2,22 @@ package co.kr.nawa.simpleportfolio.holder
 
 import android.view.View
 import android.view.animation.AccelerateInterpolator
+import co.kr.nawa.simpleportfolio.databinding.ListSubItemBinding
 import co.kr.nawa.simpleportfolio.item.Item
 import co.kr.nawa.simpleportfolio.util.adapter.ViewHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.list_sub_item.view.*
+import kotlinx.android.extensions.LayoutContainer
 
 
-class SubitemVIewHolder(val view: View, var mListener: ((View,Int)->Unit)?): ViewHolder(view),View.OnClickListener {
+class SubitemVIewHolder(private val binding: ListSubItemBinding, var mListener:((View,Int)->Unit)?) :
+    ViewHolder(binding.root),View.OnClickListener, LayoutContainer {
+
+    override val containerView: View
+        get() = binding.root
 
 
-    private val subimg=view.subimg
 
     override fun onClick(v: View) {
         mListener?.let {
@@ -26,11 +30,11 @@ class SubitemVIewHolder(val view: View, var mListener: ((View,Int)->Unit)?): Vie
         val requestOptions = RequestOptions
             .skipMemoryCacheOf(false)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
-        Glide.with(view.context)
+        Glide.with(binding.root.context)
             .load(i.image_url)
             .apply(requestOptions)
             .override(100, 100)
-            .into(subimg)
+            .into(binding.subimg)
 //        view.textView.text=i.name
 
         val interpolator= AccelerateInterpolator()
@@ -39,7 +43,7 @@ class SubitemVIewHolder(val view: View, var mListener: ((View,Int)->Unit)?): Vie
 //            .setDuration(3000).setInterpolator(interpolator).withEndAction {
 //                view.animate().translationY(0f).setDuration(300).setInterpolator(interpolator).start()
 //            }.start()
-        view.setOnClickListener(this)
+        binding.root.setOnClickListener(this)
 //        val drawable : GradientDrawable =view.context.getDrawable(R.drawable.imageclip) as (GradientDrawable)
 //
 //

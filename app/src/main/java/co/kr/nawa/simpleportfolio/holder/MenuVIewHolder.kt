@@ -2,18 +2,20 @@ package co.kr.nawa.simpleportfolio.holder
 
 
 import android.view.View
+import co.kr.nawa.simpleportfolio.databinding.ListMenuBinding
 import co.kr.nawa.simpleportfolio.item.MenuItem
 import co.kr.nawa.simpleportfolio.util.adapter.ViewHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.list_menu.view.*
+import kotlinx.android.extensions.LayoutContainer
 
 
-class MenuVIewHolder(val view: View, var mListener: ((View,Int)->Unit)?): ViewHolder(view),View.OnClickListener {
+class MenuVIewHolder(val binding: ListMenuBinding, var mListener: ((View,Int)->Unit)?):
+    ViewHolder(binding.root),View.OnClickListener, LayoutContainer {
 
-    val menu_text=view.menu_text
-    val menu_img=view.menu_img
+    override val containerView: View
+        get() = binding.root
 
     override fun onClick(v: View) {
         mListener?.let {
@@ -26,15 +28,15 @@ class MenuVIewHolder(val view: View, var mListener: ((View,Int)->Unit)?): ViewHo
         val requestOptions = RequestOptions
             .skipMemoryCacheOf(false)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
-        Glide.with(view.context)
+        Glide.with(binding.root.context)
             .load(i.img)
             .apply(requestOptions)
             .override(100, 100)
-            .into(menu_img)
-        menu_text.text=i.text
+            .into(binding.menuImg)
+        binding.menuText.text=i.text
 
 
-        view.setOnClickListener(this)
+        binding.root.setOnClickListener(this)
 //        val drawable : GradientDrawable =view.context.getDrawable(R.drawable.imageclip) as (GradientDrawable)
 //
 //

@@ -7,6 +7,7 @@ import co.kr.nawa.simpleportfolio.util.async.RestHelper
 import co.kr.nawa.simpleportfolio.util.async.Repository
 import co.kr.nawa.simpleportfolio.viewModel.MainViewModel
 import co.kr.nawa.simpleportfolio.menu.viewModel.SubViewModel
+import co.kr.nawa.simpleportfolio.viewModel.IntroViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
@@ -22,10 +23,13 @@ val app= module {
         Repository(get { parametersOf(type) })
     }
 
-
 }
 
 val viewModels= module {
+
+    viewModel {
+        IntroViewModel(get{ parametersOf(RestHelper.Type.SUB)})
+    }
 
     viewModel {
         MainViewModel()

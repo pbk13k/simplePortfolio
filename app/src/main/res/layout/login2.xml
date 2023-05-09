@@ -14,8 +14,6 @@
         android:src="@drawable/ic_back" />
 
 
-
-
     <LinearLayout
 
         android:layout_gravity="center"
