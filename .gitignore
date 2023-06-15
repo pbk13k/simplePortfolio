@@ -84,7 +84,7 @@ lint/tmp/
 # lint/reports/
 
 app/.gitignore
-app/build.gradle
+
 app/libs/
 app/proguard-rules.pro
 app/src/androidTest/

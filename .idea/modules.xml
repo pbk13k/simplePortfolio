@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="simplePortfolio/app" />
-      <module fileurl="file://$PROJECT_DIR$/simplePortfolio.iml" filepath="$PROJECT_DIR$/simplePortfolio.iml" group="simplePortfolio" />
+      <module fileurl="file://$PROJECT_DIR$/simplePortfolio.iml" filepath="$PROJECT_DIR$/simplePortfolio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/simplePortfolio.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/simplePortfolio.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/simplePortfolio.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/simplePortfolio.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/simplePortfolio.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/simplePortfolio.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/simplePortfolio.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/simplePortfolio.app.unitTest.iml" />
     </modules>
   </component>
 </project>

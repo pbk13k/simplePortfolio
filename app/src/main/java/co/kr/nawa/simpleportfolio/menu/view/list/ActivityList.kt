@@ -8,7 +8,10 @@ import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import co.kr.nawa.simpleportfolio.R
 import co.kr.nawa.simpleportfolio.databinding.ActivityListBinding
 import co.kr.nawa.simpleportfolio.databinding.ListItemBinding
@@ -22,6 +25,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ActivityList : ActivityBase<ActivityListBinding,ListViewModel>() {
@@ -39,22 +43,25 @@ class ActivityList : ActivityBase<ActivityListBinding,ListViewModel>() {
     private var menuLayoutPadding=0
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        // Enable Activity Transitions. Optionally enable Activity transitions in your
-        // theme with <item name=”android:windowActivityTransitions”>true</item>.
-        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
-
-        // Attach a callback used to capture the shared elements from this Activity to be used
-        // by the container transform transition
-        setExitSharedElementCallback(MaterialContainerTransformSharedElementCallback())
-
-        // Keep system bars (status bar, navigation bar) persistent throughout the transition.
-        window.sharedElementsUseOverlay = false
-        super.onCreate(savedInstanceState)
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
+//        setExitSharedElementCallback(MaterialContainerTransformSharedElementCallback())
+//
+//        window.sharedElementsUseOverlay = false
+//
+//        super.onCreate(savedInstanceState)
+//    }
 
 
     override fun init() {
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+            }
+        }
+
+
 
         viewModel.items.value?.let {
             object : MyAdapter(viewModel.items.value!!) {

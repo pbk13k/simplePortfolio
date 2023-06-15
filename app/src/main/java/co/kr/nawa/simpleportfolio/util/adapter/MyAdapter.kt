@@ -46,7 +46,6 @@ abstract class MyAdapter( items: ArrayList<out Any>) : RecyclerView.Adapter<View
 //
     override fun onBindViewHolder(@NonNull holder: ViewHolder, position: Int) {
         holder.init(items[position])
-
     }
 
 

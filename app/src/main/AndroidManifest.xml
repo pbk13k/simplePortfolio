@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="co.kr.nawa.simpleportfolio">
-
+    xmlns:tools="http://schemas.android.com/tools">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -11,14 +9,12 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-
-
     <application
-        android:networkSecurityConfig="@xml/network_security_config"
         android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -27,74 +23,58 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-
         <activity
-            android:exported="true"
             android:name=".view.Intro"
+            android:exported="true"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"
-            >
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".menu.view.MapActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
         <activity
-
             android:name=".menu.view.LoginActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity">
-
-        </activity>
+            tools:ignore="LockedOrientationActivity"/>
         <activity
-            android:name="co.kr.nawa.simpleportfolio.menu.view.list.ActivityList"
+            android:name=".menu.view.list.ActivityList"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="co.kr.nawa.simpleportfolio.menu.view.list.SubActivity"
+            android:name=".menu.view.list.SubActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".view.MainActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity">
-
-        </activity>
-
-
-
-
-        <!--        kakao       -->
+            tools:ignore="LockedOrientationActivity"/> <!-- kakao -->
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="@string/kakao_app_key"/>
+            android:value="@string/kakao_app_key" />
 
         <activity
             android:name="com.kakao.auth.authorization.authcode.KakaoWebViewActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
 
-        <meta-data android:name="com.facebook.sdk.ClientToken"
-            android:value="@string/facebook_client_token"/>
-
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-
-
-
     </application>
 
 </manifest>

@@ -1,11 +1,14 @@
 package co.kr.nawa.simpleportfolio.view
 
 
-//import co.kr.nawa.simpleportfolio.util.adapter.MyAdapter1
+
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import co.kr.nawa.simpleportfolio.R
 import co.kr.nawa.simpleportfolio.databinding.ActivityMainBinding
@@ -15,6 +18,7 @@ import co.kr.nawa.simpleportfolio.util.adapter.MyAdapter
 import co.kr.nawa.simpleportfolio.util.adapter.ViewHolder
 import co.kr.nawa.simpleportfolio.util.basic.ActivityBase
 import co.kr.nawa.simpleportfolio.viewModel.MainViewModel
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

@@ -5,20 +5,16 @@ import co.kr.nawa.simpleportfolio.item.ResponseItem
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken
-import io.reactivex.Single
 import co.kr.nawa.simpleportfolio.util.common.logD
+import io.reactivex.Observable
 import retrofit2.HttpException
 import retrofit2.Response
 
 class Repository(val retrofit: RestHelper) {
 
-    val api: Api_Data
+    val api: ApiData = retrofit.getRetrofit().create(ApiData::class.java)
 
-    init {
-        api=retrofit.getRetrofit().create(Api_Data::class.java)
-    }
-
-    fun getTojsonOne(url:String,hashMap: HashMap<String,String>,key:String): Single<String> {
+    fun getTojsonOne(url:String,hashMap: HashMap<String,String>,key:String): Observable<String> {
         val apilist  =api.getTOJosn(url,hashMap).map { res:JsonElement ->
 
 //            var body=res.toString()
@@ -37,7 +33,7 @@ class Repository(val retrofit: RestHelper) {
         url:String,
         headers: MutableMap<String, Any>,
         hashMap: MutableMap<String,Any>,
-        classOfT:Class<T>, key:String): Single<ResponseItem<T>> {
+        classOfT:Class<T>, key:String): Observable<ResponseItem<T>> {
 
         return api.postToJson(url,headers,hashMap).map { res : Response<JsonElement> ->  T
             if (res.isSuccessful){
@@ -55,7 +51,7 @@ class Repository(val retrofit: RestHelper) {
         }
     }
 
-    fun <T>  getTojson(url:String,hashMap: HashMap<String,String>,classOfT:Class<T>): Single<ArrayList<T>> {
+    fun <T>  getTojson(url:String,hashMap: HashMap<String,String>,classOfT:Class<T>): Observable<ArrayList<T>> {
         val apilist  =api.getTOJosn(url,hashMap).map { res:JsonElement ->  T
 
             var body=res.toString()
@@ -70,7 +66,7 @@ class Repository(val retrofit: RestHelper) {
     }
 
     //stores
-    fun <T>  getjson(url:String,hashMap: HashMap<String,String>,classOfT:Class<T>): Single<ArrayList<T>> {
+    fun <T>  getjson(url:String,hashMap: HashMap<String,String>,classOfT:Class<T>): Observable<ArrayList<T>> {
         val apilist  =api.getJosn(url,hashMap).map { res:JsonElement ->  T
             //var any:T=Gson().fromJson(res,classOfT)
 
@@ -89,7 +85,7 @@ class Repository(val retrofit: RestHelper) {
     }
 
 
-    fun <T>getType(url:String,hashMap: HashMap<String,String>,classOfT:Class<T>): Single<ArrayList<T>> {
+    fun <T>getType(url:String,hashMap: HashMap<String,String>,classOfT:Class<T>): Observable<ArrayList<T>> {
         val apilist  =api.getType(url,hashMap).map { res:JsonElement ->  T
 
             var body=res.asJsonObject.get("stores").asJsonArray.toString()
@@ -103,7 +99,7 @@ class Repository(val retrofit: RestHelper) {
         return apilist
     }
 
-    fun <T>getlist2(url:String,hashMap: HashMap<String,String>,classOfT:Class<T>): Single<T> {
+    fun <T>getlist2(url:String,hashMap: HashMap<String,String>,classOfT:Class<T>): Observable<T> {
         val apilist  =api.getJosn2(url,hashMap).map { res:JsonElement ->  T
             var any:T=Gson().fromJson(res,classOfT)
 

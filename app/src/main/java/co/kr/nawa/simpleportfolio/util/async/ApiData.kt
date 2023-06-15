@@ -1,13 +1,13 @@
 package co.kr.nawa.simpleportfolio.util.async
 
 import com.google.gson.JsonElement
-import io.reactivex.Single
+import io.reactivex.Observable
 import retrofit2.Response
 
 import retrofit2.http.*
 import java.util.*
 
-interface Api_Data {
+interface ApiData {
 
     /*
     *   QueryMap == get에서 주소에 붙이
@@ -22,7 +22,7 @@ interface Api_Data {
     fun getTOJosn(
         @Url url: String,
         @QueryMap body: HashMap<String,String>
-    ): Single<JsonElement>
+    ): Observable<JsonElement>
 
 
     //json
@@ -31,7 +31,7 @@ interface Api_Data {
     fun getJosn(
             @Url url: String,
             @Body body: HashMap<String,String>
-    ): Single<JsonElement>
+    ): Observable<JsonElement>
 
 
     @Headers("Content-Type: application/json")
@@ -39,7 +39,7 @@ interface Api_Data {
     fun getType(
         @Url url: String,
         @QueryMap body: HashMap<String,String>
-    ): Single<JsonElement>
+    ): Observable<JsonElement>
 
 
     @Headers("Content-Type: application/json")
@@ -47,7 +47,7 @@ interface Api_Data {
     fun getJosn2(
         @Url url: String,
         @Body body: HashMap<String,String>
-    ): Single<JsonElement>
+    ): Observable<JsonElement>
 
 
     @Headers("Content-Type: application/json")
@@ -56,5 +56,5 @@ interface Api_Data {
         @Url url: String,
         @HeaderMap headers: MutableMap<String,Any>,
         @Body body: MutableMap<String,Any>
-    ): Single<Response<JsonElement>>
+    ): Observable<Response<JsonElement>>
 }
