@@ -121,6 +121,7 @@ class SubActivity : ActivityBase<ActivitySubBinding, SubViewModel>() {
     override fun init_Listener() {
         binding.back.setOnClickListener {
             finishAfterTransition()
+            finish()
         }
         binding.backBtn2.setOnClickListener {
             logD("bottomSheetBehavior.state=="+bottomSheetBehavior.state)

@@ -100,8 +100,7 @@
     <string name="facebook_client_token">a1f1a3ac02fa27a1d9ffc9a0ddbb0fe0</string>
 
     <string name="kakao_app_key">37cc3c75ae9304b80ee6bd814b282d04</string>
-
-
+    <string name="title_activity_main">MainActivity</string>
 
 
 </resources>

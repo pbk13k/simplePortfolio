@@ -3,6 +3,7 @@ package co.kr.nawa.simpleportfolio.di
 import co.kr.nawa.simpleportfolio.menu.viewModel.ListViewModel
 import co.kr.nawa.simpleportfolio.menu.viewModel.LoginViewModel
 import co.kr.nawa.simpleportfolio.menu.viewModel.MapViewModel
+import co.kr.nawa.simpleportfolio.menu.viewModel.NfcViewModel
 import co.kr.nawa.simpleportfolio.util.async.RestHelper
 import co.kr.nawa.simpleportfolio.util.async.Repository
 import co.kr.nawa.simpleportfolio.viewModel.MainViewModel
@@ -52,7 +53,9 @@ val viewModels= module {
         MapViewModel(get{ parametersOf(RestHelper.Type.MAIN)})
     }
 
-
+    viewModel {
+        NfcViewModel()
+    }
 
 }
 

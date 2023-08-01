@@ -29,15 +29,14 @@ import co.kr.nawa.simpleportfolio.util.ani.move
 import co.kr.nawa.simpleportfolio.util.basic.ActivityBase
 import co.kr.nawa.simpleportfolio.util.common.logD
 import co.kr.nawa.simpleportfolio.util.common.logE
-import co.kr.nawa.simpleportfolio.util.login.FaceBookLogin
+
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.kakao.sdk.common.KakaoSdk
-import com.navercorp.nid.NaverIdLoginSDK
+
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -56,19 +55,16 @@ class LoginActivity : ActivityBase<ActivityLoginBinding, LoginViewModel>() {
     var scene3: Scene? = null
 
 
-
-    var faceBookLogin:FaceBookLogin? =null
-
-    private val kakaoAppKey="37cc3c75ae9304b80ee6bd814b282d04"
+    private val kakaoAppKey = "37cc3c75ae9304b80ee6bd814b282d04"
 
     val OAUTH_CLIENT_ID = "Pk5cz4EJ8C300rxsotuQ"
     val OAUTH_CLIENT_SECRET = "VBmsfvDTuA"
-    lateinit var  OAUTH_CLIENT_NAME:String
+    lateinit var OAUTH_CLIENT_NAME: String
 
     override fun init() {
-        OAUTH_CLIENT_NAME= getString(R.string.app_name)
+        OAUTH_CLIENT_NAME = getString(R.string.app_name)
 
-        KakaoSdk.init(this,kakaoAppKey)
+        KakaoSdk.init(this, kakaoAppKey)
         //logD("init")
 //        val params = Bundle()
 //        var mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
@@ -76,12 +72,12 @@ class LoginActivity : ActivityBase<ActivityLoginBinding, LoginViewModel>() {
 //        mFirebaseAnalytics.logEvent("loginview", params)
 
         ValueAnimator().apply {
-            duration=5000
+            duration = 5000
             setEvaluator(ArgbEvaluator())
 //            setIntValues(0xff, 0x00)
 //            setIntValues(Color.WHITE, Color.parseColor("#E56933"))
 //            setFloatValues(0f,100000f)
-            setFloatValues(1008f,0f)
+            setFloatValues(1008f, 0f)
             addUpdateListener {
 
 
@@ -98,7 +94,7 @@ class LoginActivity : ActivityBase<ActivityLoginBinding, LoginViewModel>() {
 
 //                    setGradientCenter(it.animatedValue as Float,0f)
 //                    setGradientCenter(0f,it.animatedValue as Float)
-                    setGradientCenter(it.animatedValue as Float,it.animatedValue as Float)
+                    setGradientCenter(it.animatedValue as Float, it.animatedValue as Float)
                 }
 
                 binding.bgLayout.background = gd
@@ -110,7 +106,7 @@ class LoginActivity : ActivityBase<ActivityLoginBinding, LoginViewModel>() {
 
         scene1 = Scene.getSceneForLayout(binding.bgLayout, R.layout.login1, applicationContext)
         scene2 = Scene.getSceneForLayout(binding.bgLayout, R.layout.login2, applicationContext)
-        scene3=Scene.getSceneForLayout(binding.bgLayout,R.layout.login3,applicationContext)
+        scene3 = Scene.getSceneForLayout(binding.bgLayout, R.layout.login3, applicationContext)
 
         // BEGIN_INCLUDE(transition_simple)
         // You can start an automatic transition with TransitionManager.go().
@@ -119,7 +115,7 @@ class LoginActivity : ActivityBase<ActivityLoginBinding, LoginViewModel>() {
         // BEGIN_INCLUDE(custom_transition_manager)
         // We create a custom TransitionManager for Scene 3, in which ChangeBounds and Fade
         // take place at the same time.
-        mTransitionManagerForScene3=TransitionInflater.from(this)
+        mTransitionManagerForScene3 = TransitionInflater.from(this)
             .inflateTransitionManager(R.transition.login2_transition_manager, binding.bgLayout)
 
         viewModel.type.postValue(LoginViewModel.Type.MAIN)
@@ -180,75 +176,56 @@ class LoginActivity : ActivityBase<ActivityLoginBinding, LoginViewModel>() {
 
 
     private fun loginListener() {
-        startBg(R.drawable.bg_an_start,binding.bgLayout.findViewById<FrameLayout>(R.id.login_bg1))
+        startBg(R.drawable.bg_an_start, binding.bgLayout.findViewById<FrameLayout>(R.id.login_bg1))
 
 
-        val idText=binding.bgLayout.findViewById<TextInputLayout>(R.id.id_text)
-        val pwText=binding.bgLayout.findViewById<TextInputLayout>(R.id.pw_text)
+        val idText = binding.bgLayout.findViewById<TextInputLayout>(R.id.id_text)
+        val pwText = binding.bgLayout.findViewById<TextInputLayout>(R.id.pw_text)
 
-        idText.editText?.addTextChangedListener(object :TextWatcher{
+        idText.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
-                if (s.length>10){
-                    idText.error="10자리까지 입력가능합니다."
-                }else{
-                    idText.error=null
+                if (s.length > 10) {
+                    idText.error = "10자리까지 입력가능합니다."
+                } else {
+                    idText.error = null
                 }
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
 
 
-        pwText.editText?.addTextChangedListener(object :TextWatcher{
+        pwText.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
-                if (s.length>12){
-                    pwText.error="12자리까지 입력가능합니다."
-                }else{
-                    pwText.error=null
+                if (s.length > 12) {
+                    pwText.error = "12자리까지 입력가능합니다."
+                } else {
+                    pwText.error = null
                 }
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
         binding.bgLayout.findViewById<TextView>(R.id.sign_in)
-        .setOnClickListener {
+            .setOnClickListener {
 
-            viewModel.type.postValue(LoginViewModel.Type.MAIN)
-        }
+                viewModel.type.postValue(LoginViewModel.Type.MAIN)
+            }
 
         binding.bgLayout.findViewById<ImageView>(R.id.back_btn2).setOnClickListener {
             viewModel.type.postValue(LoginViewModel.Type.MAIN)
         }
 
-
-
-        binding.bgLayout.findViewById<ImageView>(R.id.facebook_btn).setOnClickListener {
-            if(faceBookLogin==null){
-                faceBookLogin=FaceBookLogin(this,callback)
-//                faceBookLogin=FaceBookLogin(activityLauncher,callback)
-            }
-            faceBookLogin?.login()
-        }
-
-        binding.bgLayout.findViewById<ImageView>(R.id.kakao_btn).setOnClickListener {
+        binding.bgLayout.findViewById<LinearLayout>(R.id.kakao_btn).setOnClickListener {
             logD("kakaoBtn")
             viewModel.kakaoLogin(this)
         }
 
-
-
-        binding.bgLayout.findViewById<ImageView>(R.id.naver_btn).setOnClickListener {
-//            NaverLogin(this,callback).login()
-            //todo 클라이언트 생성 (카카오 처럼)
-            NaverIdLoginSDK.initialize(this, OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET, OAUTH_CLIENT_NAME)
-
-            NaverIdLoginSDK.authenticate(this, naverCallbakc)
-        }
-
-        binding.bgLayout.findViewById<ImageView>(R.id.google_btn).setOnClickListener {
-
+        binding.bgLayout.findViewById<LinearLayout>(R.id.google_btn).setOnClickListener {
 
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
 //                .requestIdToken(context.getString(R.string.google_maps_key))
@@ -260,71 +237,47 @@ class LoginActivity : ActivityBase<ActivityLoginBinding, LoginViewModel>() {
     }
 
 
-    val callback:(item:SnsItem)->Unit={
-        if(it.result){
-            Snackbar.make(binding.bgLayout,it.email, Snackbar.LENGTH_LONG).show()
+    val callback: (item: SnsItem) -> Unit = {
+        if (it.result) {
+            Snackbar.make(binding.bgLayout, it.email, Snackbar.LENGTH_LONG).show()
 //                snackbarShow(it.email)
-        }else{
-            Snackbar.make(binding.bgLayout,"로그인 실패/취소 되었습니다.", Snackbar.LENGTH_LONG).show()
+        } else {
+            Snackbar.make(binding.bgLayout, "로그인 실패/취소 되었습니다.", Snackbar.LENGTH_LONG).show()
 //                snackbarShow("로그인 실패/취소 되었습니다.")
         }
         logD(it.email)
     }
 
 
-    private val naverCallbakc = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            result ->
-        when(result.resultCode) {
-            RESULT_OK -> {
-                // 네이버 로그인 인증이 성공했을 때 수행할 코드 추가
-//                binding.tvAccessToken.text = NaverIdLoginSDK.getAccessToken()
-//                binding.tvRefreshToken.text = NaverIdLoginSDK.getRefreshToken()
-//                binding.tvExpires.text = NaverIdLoginSDK.getExpiresAt().toString()
-//                binding.tvType.text = NaverIdLoginSDK.getTokenType()
-//                binding.tvState.text = NaverIdLoginSDK.getState().toString()
-                logD("getAccessToken()=${NaverIdLoginSDK.getAccessToken()}")
-                logD("getRefreshToken()=${NaverIdLoginSDK.getRefreshToken()}")
-                logD("getExpiresAt()=${NaverIdLoginSDK.getExpiresAt()}")
-                logD("getState()=${NaverIdLoginSDK.getState()}")
+    private fun joinListener() {
 
-            }
-            RESULT_CANCELED -> {
-                // 실패 or 에러
-                val errorCode = NaverIdLoginSDK.getLastErrorCode().code
-                val errorDescription = NaverIdLoginSDK.getLastErrorDescription()
-                Toast.makeText(baseContext, "errorCode:$errorCode, errorDesc:$errorDescription", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
+        val idText = binding.bgLayout.findViewById<TextInputLayout>(R.id.id_text)
+        val pwText = binding.bgLayout.findViewById<TextInputLayout>(R.id.pw_text)
 
-
-    private fun joinListener(){
-
-        val idText=binding.bgLayout.findViewById<TextInputLayout>(R.id.id_text)
-        val pwText=binding.bgLayout.findViewById<TextInputLayout>(R.id.pw_text)
-
-        idText.editText?.addTextChangedListener(object :TextWatcher{
+        idText.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
-                if (s.length>10){
-                    idText.error="10자리까지 입력가능합니다."
-                }else{
-                    idText.error=null
+                if (s.length > 10) {
+                    idText.error = "10자리까지 입력가능합니다."
+                } else {
+                    idText.error = null
                 }
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
 
 
-        pwText.editText?.addTextChangedListener(object :TextWatcher{
+        pwText.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
-                if (s.length>12){
-                    pwText.error="12자리까지 입력가능합니다."
-                }else{
-                    pwText.error=null
+                if (s.length > 12) {
+                    pwText.error = "12자리까지 입력가능합니다."
+                } else {
+                    pwText.error = null
                 }
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
@@ -341,10 +294,11 @@ class LoginActivity : ActivityBase<ActivityLoginBinding, LoginViewModel>() {
         move(binding.bgLayout.findViewById<LinearLayout>(R.id.text_layout), 1000)
 
 //        startBg(R.drawable.bg_an_start,login_bg1)
-        startBg(R.drawable.bg_an_start,binding.bgLayout.findViewById<FrameLayout>(R.id.login_bg1))
+        startBg(R.drawable.bg_an_start, binding.bgLayout.findViewById<FrameLayout>(R.id.login_bg1))
         binding.bgLayout.findViewById<LinearLayout>(R.id.login_btn_layout).visibility = View.GONE
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
-            binding.bgLayout.findViewById<LinearLayout>(R.id.login_btn_layout).visibility = View.VISIBLE
+            binding.bgLayout.findViewById<LinearLayout>(R.id.login_btn_layout).visibility =
+                View.VISIBLE
             move(binding.bgLayout.findViewById<LinearLayout>(R.id.login_btn_layout), 500)
 
         }, 1000)
@@ -352,7 +306,7 @@ class LoginActivity : ActivityBase<ActivityLoginBinding, LoginViewModel>() {
     }
 
 
-    private fun startBg(bg: Int,view:View) {
+    private fun startBg(bg: Int, view: View) {
         //bg_an1.xml 사용법
         //(binding.bgLayout.background as TransitionDrawable).startTransition(1000)
 
@@ -368,51 +322,43 @@ class LoginActivity : ActivityBase<ActivityLoginBinding, LoginViewModel>() {
 
     override fun onBackPressed() {
         //super.onBackPressed()
-        when(viewModel.type.value){
-            LoginViewModel.Type.MAIN ->{finish()}
-            LoginViewModel.Type.LOGIN,LoginViewModel.Type.JOIN ->{viewModel.type.postValue(LoginViewModel.Type.MAIN)}
-
-        }
-    }
-
-    private val googleLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            result: ActivityResult ->
-
-        if (result.resultCode == RESULT_OK) {
-
-            val result = Auth.GoogleSignInApi.getSignInResultFromIntent(result.data!!)
-
-            if (result != null) {
-                var email=""
-                if (result.isSuccess) {
-                    email=result.signInAccount!!.email!!
-                    //val token = result.signInAccount!!.idToken
-                    //logD("token=${token}")
-                    logD("token=${result.signInAccount!!.email}")
-                    logD("token=${result.signInAccount!!.id}")
-
-                } else {
-                    logE( "Google Login Failed." + result.status)
-                }
-
-                callback(SnsItem(email,SnsItem.Type.GOOGLE,result.isSuccess))
+        when (viewModel.type.value) {
+            LoginViewModel.Type.MAIN -> {
+                finish()
             }
-        }
 
+            LoginViewModel.Type.LOGIN, LoginViewModel.Type.JOIN -> {
+                viewModel.type.postValue(LoginViewModel.Type.MAIN)
+            }
+
+            else -> {}
+        }
     }
 
+    private val googleLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+            if (result.resultCode == RESULT_OK) {
 
+                val result = Auth.GoogleSignInApi.getSignInResultFromIntent(result.data!!)
 
-        if (resultCode == RESULT_OK) {
-            faceBookLogin?.callback(
-                requestCode,
-                resultCode,
-                data!!
-            )
+                if (result != null) {
+                    var email = ""
+                    if (result.isSuccess) {
+                        email = result.signInAccount!!.email!!
+                        //val token = result.signInAccount!!.idToken
+                        //logD("token=${token}")
+                        logD("token=${result.signInAccount!!.email}")
+                        logD("token=${result.signInAccount!!.id}")
+
+                    } else {
+                        logE("Google Login Failed." + result.status)
+                    }
+
+                    callback(SnsItem(email, SnsItem.Type.GOOGLE, result.isSuccess))
+                }
+            }
 
         }
-        super.onActivityResult(requestCode, resultCode, data)
-    }
+
 }

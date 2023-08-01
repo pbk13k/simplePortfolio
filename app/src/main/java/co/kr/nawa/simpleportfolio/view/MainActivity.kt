@@ -29,7 +29,6 @@ class MainActivity : ActivityBase<ActivityMainBinding, MainViewModel>() {
     override val viewModel: MainViewModel by viewModel()
 
 
-
     override fun init() {
 //        toolbar.title="Simple Project"
 
