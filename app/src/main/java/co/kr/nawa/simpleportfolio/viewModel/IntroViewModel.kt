@@ -1,10 +1,12 @@
 package co.kr.nawa.simpleportfolio.viewModel
 
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import co.kr.nawa.simpleportfolio.BuildConfig.VERSION_CODE
 import co.kr.nawa.simpleportfolio.BuildConfig.VERSION_NAME
 import co.kr.nawa.simpleportfolio.item.Item
+import co.kr.nawa.simpleportfolio.menu.viewModel.LoginViewModel
 import co.kr.nawa.simpleportfolio.util.async.Repository
 import co.kr.nawa.simpleportfolio.util.basic.ViewModelBasic
 import co.kr.nawa.simpleportfolio.util.common.logD
@@ -15,9 +17,11 @@ import io.reactivex.schedulers.Schedulers
 class IntroViewModel(private val repository: Repository):ViewModelBasic() {
 
     val versionCode:Int = VERSION_CODE
-    var versionName = MutableLiveData<String>()
-    var versionCheck = MutableLiveData<Boolean>()
+    var _versionName = MutableLiveData<String>()
+    val versionName: LiveData<String> get() = _versionName
 
+    var _versionCheck = MutableLiveData<Boolean>()
+    val versionCheck: LiveData<Boolean> get() = _versionCheck
 
     init {
         versionCheck()
@@ -25,7 +29,7 @@ class IntroViewModel(private val repository: Repository):ViewModelBasic() {
 
     private fun versionCheck(){
 //        versionCode.postValue(V)
-        versionName.postValue(VERSION_NAME)
+        _versionName.postValue(VERSION_NAME)
 
 
         var data=HashMap<String,String>()
@@ -38,15 +42,15 @@ class IntroViewModel(private val repository: Repository):ViewModelBasic() {
                     logD("it=$it")
 
                     if (versionCode < it.toInt()){
-                        versionCheck.postValue(true)
+                        _versionCheck.postValue(true)
                     }else{
-                        versionCheck.postValue(false)
+                        _versionCheck.postValue(false)
                     }
 
 
                 },{
                     //logE("error=${it.localizedMessage}")
-                    versionCheck.postValue(false)
+                    _versionCheck.postValue(false)
                 })
         )
 

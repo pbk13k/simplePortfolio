@@ -91,7 +91,7 @@ class SubActivity : ActivityBase<ActivitySubBinding, SubViewModel>() {
             ) as ArrayList<Item>).size}"
         )
 
-        viewModel.items.postValue(intent.getSerializableExtra("items") as ArrayList<Item>)
+        viewModel.setItem(intent.getSerializableExtra("items") as ArrayList<Item>)
 
         viewModel.position=intent.getIntExtra("position",-1)
 

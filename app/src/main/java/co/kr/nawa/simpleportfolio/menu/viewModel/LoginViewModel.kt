@@ -2,6 +2,7 @@ package co.kr.nawa.simpleportfolio.menu.viewModel
 
 import android.content.Context
 import android.hardware.usb.UsbDevice.getDeviceId
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import co.kr.nawa.simpleportfolio.item.OauthItem
 import co.kr.nawa.simpleportfolio.util.common.logD
@@ -27,7 +28,8 @@ class LoginViewModel(private val repository: Repository) : ViewModelBasic() {
     }
 
 
-    var type = MutableLiveData<Type>()
+    var _type = MutableLiveData<Type>()
+    val type: LiveData<Type> get() = _type
 
 
     fun kakaoLogin(context: Context) {
@@ -79,6 +81,10 @@ class LoginViewModel(private val repository: Repository) : ViewModelBasic() {
             })
             .addTo(compositeDisposable)
 
+    }
+
+    fun setType(type: Type) {
+        _type.postValue(type)
     }
 
 

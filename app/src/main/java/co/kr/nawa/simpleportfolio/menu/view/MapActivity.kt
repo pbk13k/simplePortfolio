@@ -25,7 +25,7 @@ class MapActivity : ActivityBase<ActivityMapBinding,MapViewModel>() {
         val mapFragment = supportFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
         mapFragment.getMapAsync { maps ->
             googleMap=maps
-            viewModel.latlng.postValue(LatLng(37.569794,126.9970932))
+            //viewModel.latlng.postValue(LatLng(37.569794,126.9970932))
         }
     }
 
@@ -34,10 +34,10 @@ class MapActivity : ActivityBase<ActivityMapBinding,MapViewModel>() {
     }
 
     override fun init_dataBinding() {
-        viewModel.latlng.observe(this, Observer {
-            if (::googleMap.isInitialized){
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(it, 17f))
-            }
-        })
+//        viewModel.latlng.observe(this, Observer {
+//            if (::googleMap.isInitialized){
+//                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(it, 17f))
+//            }
+//        })
     }
 }

@@ -118,7 +118,8 @@ class LoginActivity : ActivityBase<ActivityLoginBinding, LoginViewModel>() {
         mTransitionManagerForScene3 = TransitionInflater.from(this)
             .inflateTransitionManager(R.transition.login2_transition_manager, binding.bgLayout)
 
-        viewModel.type.postValue(LoginViewModel.Type.MAIN)
+
+        viewModel.setType(LoginViewModel.Type.MAIN)
     }
 
 
@@ -161,12 +162,12 @@ class LoginActivity : ActivityBase<ActivityLoginBinding, LoginViewModel>() {
         )
 
         binding.bgLayout.findViewById<TextView>(R.id.sign_in).setOnClickListener {
-            viewModel.type.postValue(LoginViewModel.Type.LOGIN)
+            viewModel.setType(LoginViewModel.Type.LOGIN)
         }
 
 
         binding.bgLayout.findViewById<TextView>(R.id.sign_up).setOnClickListener {
-            viewModel.type.postValue(LoginViewModel.Type.JOIN)
+            viewModel.setType(LoginViewModel.Type.JOIN)
         }
 
         binding.bgLayout.findViewById<TextView>(R.id.hello).setOnClickListener {
@@ -213,11 +214,11 @@ class LoginActivity : ActivityBase<ActivityLoginBinding, LoginViewModel>() {
         binding.bgLayout.findViewById<TextView>(R.id.sign_in)
             .setOnClickListener {
 
-                viewModel.type.postValue(LoginViewModel.Type.MAIN)
+                viewModel.setType(LoginViewModel.Type.MAIN)
             }
 
         binding.bgLayout.findViewById<ImageView>(R.id.back_btn2).setOnClickListener {
-            viewModel.type.postValue(LoginViewModel.Type.MAIN)
+            viewModel.setType(LoginViewModel.Type.MAIN)
         }
 
         binding.bgLayout.findViewById<LinearLayout>(R.id.kakao_btn).setOnClickListener {
@@ -285,7 +286,7 @@ class LoginActivity : ActivityBase<ActivityLoginBinding, LoginViewModel>() {
 
 
         binding.bgLayout.findViewById<ImageView>(R.id.back_btn3).setOnClickListener {
-            viewModel.type.postValue(LoginViewModel.Type.MAIN)
+            viewModel.setType(LoginViewModel.Type.MAIN)
         }
     }
 
@@ -328,7 +329,7 @@ class LoginActivity : ActivityBase<ActivityLoginBinding, LoginViewModel>() {
             }
 
             LoginViewModel.Type.LOGIN, LoginViewModel.Type.JOIN -> {
-                viewModel.type.postValue(LoginViewModel.Type.MAIN)
+                viewModel.setType(LoginViewModel.Type.MAIN)
             }
 
             else -> {}
