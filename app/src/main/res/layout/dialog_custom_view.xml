@@ -64,11 +64,10 @@
 
                 <TextView
                     android:textColor="@color/white"
-                    android:background="@color/gray"
+                    android:background="@color/bg"
                     android:id="@+id/btn_cancel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="3dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:paddingTop="12dp"
@@ -81,12 +80,12 @@
                     android:id="@+id/btn_send"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:paddingTop="12dp"
                     android:paddingBottom="12dp"
-                    android:text="@{item.sendBtnName}" />
+                    android:text="@{item.sendBtnName}"
+                    android:visibility='@{item.sendBtnName.equals("") ? View.GONE : View.VISIBLE}' />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>

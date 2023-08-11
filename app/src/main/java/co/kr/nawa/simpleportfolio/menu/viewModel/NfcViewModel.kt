@@ -8,7 +8,7 @@ import co.kr.nawa.simpleportfolio.util.basic.ViewModelBasic
 class NfcViewModel: ViewModelBasic() {
 
 
-    var _str= MutableLiveData<String>("NFC를 가져다 되면 읽습니다.")
+    var _str= MutableLiveData("NFC를 가져다 되면 읽습니다.")
     val str: LiveData<String> get() = _str
 
 

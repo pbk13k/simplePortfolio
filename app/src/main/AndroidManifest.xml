@@ -46,9 +46,7 @@
             tools:ignore="LockedOrientationActivity"
             android:exported="true">
 
-            <intent-filter>
-                <action android:name="android.nfc.action.TAG_DISCOVERED"/>
-            </intent-filter>
+
 
 
         </activity>
